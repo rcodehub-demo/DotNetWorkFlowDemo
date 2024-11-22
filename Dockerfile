@@ -1,6 +1,6 @@
 # Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /app
 COPY . .
 RUN dotnet restore "TestConsole/TestConsole/TestConsole.csproj"
-#RUN dotnet publish -c Release -o out
+RUN dotnet build "TestConsole/TestConsole/TestConsole.csproj"
