@@ -30,7 +30,7 @@ jobs:
       run: dotnet --version
       
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore TestConsole/TestConsole/TestConsole.csproj
     - name: Build Code
       run: dotnet build TestConsole/TestConsole/TestConsole.csproj --no-restore
     - name: Test Code
