@@ -3,6 +3,7 @@
 name: DotNET-WorkFlow-Demo
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
     paths-ignore:
@@ -31,6 +32,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build Code
-      run: dotnet build --no-restore
+      run: dotnet build TestConsole/TestConsole/TestConsole.csproj --no-restore
     - name: Test Code
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test TestConsole/TestConsole/TestConsole.csproj --no-build --verbosity normal
