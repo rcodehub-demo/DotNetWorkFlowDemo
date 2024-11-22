@@ -1,0 +1,36 @@
+# This workflow will build a .NET project
+
+name: DotNET-WorkFlow-Demo
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+    - README.md
+    - .gitignore
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+    - README.md
+    - .gitignore
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Display DotNet Version
+      run: dotnet --version
+      
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build Code
+      run: dotnet build --no-restore
+    - name: Test Code
+      run: dotnet test --no-build --verbosity normal
